@@ -1,0 +1,13 @@
+pandas
+scikit-learn
+numpy
+regex
+strings
+textblob
+nltk
+emoji
+spacy
+torch
+mlflow
+os
+matplotlib
