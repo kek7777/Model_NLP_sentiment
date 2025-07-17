@@ -3,9 +3,9 @@
 <a id="readme-top"></a>
 
 <!-- TITLE -->
-#  **ResNet18 using Pytorch**
+#  **Sentiment analysis using Pytorch**
 
-This project created to looking into ML model to solve a 10 image classification problem.
+This project is educational. It created to solve tasks of sentiment analysis.
 You can analyze the accuracy of a model based on its hyperparameters.
 
 <!-- TABLE OF CONTENTS -->
