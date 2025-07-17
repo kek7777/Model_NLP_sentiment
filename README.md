@@ -1,4 +1,4 @@
-<img src="images\NLP.jpg" width="800" height="250">
+<img src="images\NLP.jpg" width="800" height="280">
 
 <a id="readme-top"></a>
 
