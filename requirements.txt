@@ -8,6 +8,7 @@ nltk
 emoji
 spacy
 torch
+torchtext
 mlflow
 os
 matplotlib
