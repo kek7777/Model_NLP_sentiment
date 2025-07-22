@@ -2,3 +2,4 @@ data/
 images/
 __pycache__/
 NLP_sent_venv/
+.vscode/
