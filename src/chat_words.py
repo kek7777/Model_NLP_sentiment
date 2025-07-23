@@ -87,3 +87,4 @@ chat_word = {
     "BFF": "Best friends forever",
     "CSL": "Can't stop laughing"
 }
+
