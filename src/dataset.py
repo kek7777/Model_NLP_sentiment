@@ -20,11 +20,16 @@ def transform_label(label):
 
 df['label'] = df['sentiment'].apply(transform_label)
 
-df_new = df.loc[0:10]
-df_new['clean'] = df_new['review'].apply(preprocessing) 
+
+
+df_test = df.loc[0:10]
+df_test['clean'] = df_test['review'].apply(preprocessing) 
+
+
+
 
 #get all processed reviews
-reviews = df_new.clean.values
+reviews = df_test.clean.values
 # merge into single variable, separated by whitespaces
 words = ' '.join(reviews)
 # obtain list of words
@@ -60,7 +65,7 @@ assert len(features) == len(reviews_enc)                                        
 assert len(features[0]) == seq_length                                                       # check count of  words in review [0] (true or false)
 
 # get labels as numpy
-labels = df_new.label.to_numpy()
+labels = df_test.label.to_numpy()
 labels
 
 # train test splitting
