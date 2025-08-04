@@ -1,15 +1,16 @@
 """ This notebook used for creating dataset. """
 
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning)
 import torch
-from torch.utils.data import TensorDataset, DataLoader
+import torchtext
+from torch.utils.data import TensorDataset
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from torchtext.vocab import vocab  
 from tqdm import tqdm                                       # progressbar
 tqdm.pandas() 
-import warnings
-warnings.filterwarnings('ignore', category=UserWarning)
 from def_preprocessing import preprocessing                 # for def of preprocessing
 from collections import Counter                             # for definition of unique words (tokens) in dataframe
 
@@ -22,7 +23,8 @@ df['label'] = df['sentiment'].apply(transform_label)
 
 
 
-df_test = df.loc[0:10]
+df_test = df.loc[0:10]                                            # Choose count of review  for test model (example [0:10])
+                                                                  # or for work with dataset  put  [ : ]
 df_test['clean'] = df_test['review'].apply(preprocessing) 
 
 
