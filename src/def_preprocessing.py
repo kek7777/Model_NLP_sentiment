@@ -17,7 +17,6 @@ from nltk.stem.porter import PorterStemmer             # for stemming
 # nltk.download('all')                                   # for  working with NLTL function, after the first start should pick #nltk.download('all') 
 from chat_words import chat_word                       # for translate slang of charts to text
 from autocorrect import Speller                        # for Spelling Correction
-from collections import Counter, OrderedDict           # for definition of unique words (tokens) in dataframe
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning)
 
