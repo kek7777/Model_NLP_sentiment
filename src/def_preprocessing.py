@@ -2,6 +2,27 @@
  Proceses of Tokenization, Stemming, Lemmatization, Handling text (Remove HTML Tag, URLs, Emojies and other) are here.   """
 
 
+import re                                              # Import Regular Expression (remove HTML tags)
+import string                                          # Import Punctuation 
+from textblob import TextBlob                          # Import this Library to Handle the Spelling Issue
+import nltk
+from nltk.corpus import stopwords                      #  NLTK library to remove Stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+import emoji                                           # for translating symbol to text
+import spacy                                           # for tokenization
+import spacy.cli
+# spacy.cli.download("en_core_web_sm")                 # for  working with spacy, after the first start should pick  # spacy.cli.download("en_core_web_lg")
+from nltk.stem.porter import PorterStemmer             # for stemming
+# nltk.download('all')                                   # for  working with NLTL function, after the first start should pick #nltk.download('all') 
+from chat_words import chat_word                       # for translate slang of charts to text
+from autocorrect import Speller                        # for Spelling Correction
+from collections import Counter, OrderedDict           # for definition of unique words (tokens) in dataframe
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning)
+
+
+
 # Choose items for preprocessing: True or False
 
 lower = True                                          # LoweCasing Text
