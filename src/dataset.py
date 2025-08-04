@@ -14,12 +14,19 @@ tqdm.pandas()
 from def_preprocessing import preprocessing                 # for def of preprocessing
 from collections import Counter                             # for definition of unique words (tokens) in dataframe
 
+
+
 df = pd.read_csv(r'C:\Users\Admin\WORK\Project_CV\Model_NLP_sentiment\data\IMDB Dataset.csv')    # insert path to your data
+
+
+
 
 def transform_label(label):
     return 1 if label == 'positive' else 0
 
 df['label'] = df['sentiment'].apply(transform_label)
+
+
 
 
 
@@ -37,6 +44,10 @@ words = ' '.join(reviews)
 # obtain list of words
 words = words.split()
 
+
+
+
+
 # build vocabulary
 counter = Counter(words)
 vocab = sorted(counter, key=counter.get, reverse=True)
@@ -44,8 +55,16 @@ int2word = dict(enumerate(vocab, 1))
 int2word[0] = '<PAD>'
 word2int = {word: id for id, word in int2word.items()}
 
+
+
+
+
 # encode words
 reviews_enc = [[word2int[word] for word in review.split()] for review in tqdm(reviews)]
+
+
+
+
 
 # padding sequences
 
@@ -66,9 +85,19 @@ features = pad_features(reviews_enc, pad_id=word2int['<PAD>'], seq_length=seq_le
 assert len(features) == len(reviews_enc)                                                    # check count of reviews (true or false)
 assert len(features[0]) == seq_length                                                       # check count of  words in review [0] (true or false)
 
+
+
+
+
+
 # get labels as numpy
 labels = df_test.label.to_numpy()
 labels
+
+
+
+
+
 
 # train test splitting
 x_train, x_test, y_train, y_test = train_test_split(features, labels, test_size=0.0005, random_state=0)
@@ -77,6 +106,9 @@ data_train_x = torch.from_numpy(x_train)                            # array to t
 data_train_y = torch.from_numpy(y_train)
 data_test_x = torch.from_numpy(x_test)
 data_test_y = torch.from_numpy(y_test)
+
+
+
 
 # create tensor datasets
 trainset = TensorDataset(data_train_x, data_train_y)
