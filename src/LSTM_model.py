@@ -9,44 +9,48 @@ from torch.utils.data import DataLoader
 
 # model architecture LSTM
 
-class SentimentModel(nn.Module):
-    def __init__(self, vocab_size, output_size, hidden_size=128, embedding_size=400, n_layers=2, dropout=0.2):
-        super(SentimentModel, self).__init__()
+class LSTM(nn.Module):
+    def __init__(self, vocab_size, output_size, embed_dim, hidden_size=128,  n_layers=2, dropout=0.2):
+        super(LSTM, self).__init__()
 
-        # embedding layer is useful to map input into vector representation
-        self.embedding = nn.Embedding(vocab_size, embedding_size)
+        self.embedding = nn.Embedding(vocab_size, embed_dim)                      # embedding layer is useful to map input into vector representation
 
-        # LSTM layer preserved by PyTorch library
-        self.lstm = nn.LSTM(embedding_size, hidden_size, n_layers, dropout=dropout, batch_first=True)
+        
+        self.rnn = nn.LSTM(embed_dim, hidden_size, n_layers, dropout=dropout, batch_first=True)    # LSTM layer preserved by PyTorch library
 
-        # dropout layer
-        self.dropout = nn.Dropout(0.3)
+        
+        # self.dropout = nn.Dropout(0.3)                                              # dropout layer     
 
-        # Linear layer for output
-        self.fc = nn.Linear(hidden_size, output_size)
+        self.fc1 = nn.Linear(hidden_size, output_size)
+        self.relu = nn.ReLU()
+        
+        self.fc2 = nn.Linear(hidden_size, output_size)                               # Linear layer for output
 
-        # Sigmoid layer cz we will have binary classification
-        self.sigmoid = nn.Sigmoid()
+        
+        self.sigmoid = nn.Sigmoid()                                                 # Sigmoid layer cz we will have binary classification
 
     def forward(self, x):
         
         # convert feature to long
-        x = x.long()
+        # x = x.long()
 
         # map input to vector
-        x = self.embedding(x)
+        out = self.embedding(x)
 
         # pass forward to lstm
-        o, _ =  self.lstm(x)
+        out, _ =  self.rnn(out)
 
         # get last sequence output
-        o = o[:, -1, :]
+        out = out[:, -1, :]
+
+        out = self.fc1(out)
+        out = self.relu(out)
 
         # apply dropout and fully connected layer
-        o = self.dropout(o)
-        o = self.fc(o)
+        # out = self.dropout(o)
+        out = self.fc2(out)
 
         # sigmoid
-        o = self.sigmoid(o)
+        out = self.sigmoid(out)
 
-        return o
+        return out
