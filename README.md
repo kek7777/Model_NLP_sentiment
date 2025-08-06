@@ -29,7 +29,7 @@ You can analyze the accuracy of a model based on its hyperparameters.
 <!-- MODEL's STRUCTURE -->
 ## Structure of the model
 
- <img src="images\arh_resnet18.png" width="800" height="200">  
+ <img src="images\arh_LSTM.jpg" width="800" height="350">  
 
 **The model includes:**
 * Input layer (224x224x1)
@@ -98,7 +98,7 @@ _Below is an example of how you can  installing and setting up model._
  
  Information that was used in the development of the project.
  
- * [Origin article of ResNet](https://arxiv.org/abs/1512.03385)
+ * [Origin article of LSTM](https://www.researchgate.net/publication/13853244_Long_Short-Term_Memory)
  * [ResNet using PyTorch](https://pytorch.org/hub/pytorch_vision_resnet/)
  * [Example of the ResNet18](https://www.kaggle.com/code/ivankunyankin/resnet18-from-scratch-using-pytorch)
  
