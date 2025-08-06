@@ -29,7 +29,7 @@ You can analyze the accuracy of a model based on its hyperparameters.
 <!-- MODEL's STRUCTURE -->
 ## Structure of the model
 
- <img src="images\arh_LSTM.jpg" width="800" height="350">  
+ <img src="images\arh_LSTM.jpg" width="800" height="550">  
 
 **The model includes:**
 * Input layer (224x224x1)
