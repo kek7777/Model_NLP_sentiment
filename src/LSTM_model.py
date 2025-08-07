@@ -9,14 +9,14 @@ from torch.utils.data import DataLoader
 
 # model architecture LSTM
 
-class LSTM(nn.Module):
+class RNN(nn.Module):
     def __init__(self, vocab_size, output_size, embed_dim, hidden_size=128,  n_layers=2, dropout=0.2):
-        super(LSTM, self).__init__()
+        super(RNN, self).__init__()
 
         self.embedding = nn.Embedding(vocab_size, embed_dim)                      # embedding layer is useful to map input into vector representation
 
         
-        self.rnn = nn.LSTM(embed_dim, hidden_size, n_layers, dropout=dropout, batch_first=True)    # LSTM layer preserved by PyTorch library
+        self.lstm = nn.LSTM(embed_dim, hidden_size, n_layers, dropout=dropout, batch_first=True)    # LSTM layer preserved by PyTorch library
 
         
         # self.dropout = nn.Dropout(0.3)                                              # dropout layer     
@@ -34,14 +34,11 @@ class LSTM(nn.Module):
         # convert feature to long
         # x = x.long()
 
-        # map input to vector
-        out = self.embedding(x)
+        out = self.embedding(x)             # map input to vector
 
-        # pass forward to lstm
-        out, _ =  self.rnn(out)
+        out, _ =  self.lstm(out)             # pass forward to lstm
 
-        # get last sequence output
-        out = out[:, -1, :]
+        out = out[:, -1, :]                 # get last sequence output
 
         out = self.fc1(out)
         out = self.relu(out)
@@ -49,8 +46,6 @@ class LSTM(nn.Module):
         # apply dropout and fully connected layer
         # out = self.dropout(o)
         out = self.fc2(out)
-
-        # sigmoid
         out = self.sigmoid(out)
 
         return out

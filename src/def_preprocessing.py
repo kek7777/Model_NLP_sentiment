@@ -24,20 +24,23 @@ warnings.filterwarnings('ignore', category=UserWarning)
 
 # Choose items for preprocessing: True or False
 
-lower = True                                          # LoweCasing Text
-remove_html = True                                    # Remove HTML Tag
-remove_url = True                                     # Remove URLs
-remove_punc = True                                    # Remove punctuation
-change_chat = True                                    # Handling chat's words to words
-spell_cor = True                                      # Spelling Correction
-remove_stopword = True                                # Remove StopWords
-remove_emoji = True                                   # Handling Emojies to words
-use_stemm = False                                     # Apply Stemming
-use_lemm = True                                       # Apply Lemmatization
-use_token = False                                     # Apply Tokenization  
+  
+stemmer = PorterStemmer()  
+lemmatizer = WordNetLemmatizer()                              #Lemmatization
+
 
 # Function for preprocessing
-def preprocessing (text):
+def preprocessing(text, lower = True,                                          # LoweCasing Text
+remove_html = True,                                    # Remove HTML Tag
+remove_url = True,                                     # Remove URLs
+remove_punc = True,                                   # Remove punctuation
+change_chat = True,                                    # Handling chat's words to words
+spell_cor = True,                                      # Spelling Correction
+remove_stopword = True,                                # Remove StopWords
+remove_emoji = True,                                   # Handling Emojies to words
+use_stemm = False,                                     # Apply Stemming
+use_token = False,                                     # Apply Tokenization
+):
         
     if lower:                                                        # LoweCasing Text
         text = text.lower()
@@ -83,13 +86,11 @@ def preprocessing (text):
 
     
     if use_stemm:
-        stemmer = PorterStemmer()                                     # Stemming
+                                           # Stemming
         text = " ".join([stemmer.stem(word)
                   for word in text.split()])
-                            
-        
-    if use_lemm:
-        lemmatizer = WordNetLemmatizer()                              #Lemmatization
+                              
+    else:
         words = nltk.word_tokenize(text)
         lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
         text = ' '.join(lemmatized_words)

@@ -99,8 +99,8 @@ _Below is an example of how you can  installing and setting up model._
  Information that was used in the development of the project.
  
  * [Origin article of LSTM](https://www.researchgate.net/publication/13853244_Long_Short-Term_Memory)
- * [ResNet using PyTorch](https://pytorch.org/hub/pytorch_vision_resnet/)
- * [Example of the ResNet18](https://www.kaggle.com/code/ivankunyankin/resnet18-from-scratch-using-pytorch)
+ * [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+ * [LSTM Networks | A Detailed Explanation](https://towardsdatascience.com/lstm-networks-a-detailed-explanation-8fae6aefc7f9/)
  
  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
