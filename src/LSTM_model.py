@@ -23,11 +23,12 @@ class RNN(nn.Module):
 
         self.fc1 = nn.Linear(hidden_size, output_size)
         self.relu = nn.ReLU()
-        
-        self.fc2 = nn.Linear(hidden_size, output_size)                               # Linear layer for output
 
-        
-        self.sigmoid = nn.Sigmoid()                                                 # Sigmoid layer cz we will have binary classification
+        self.fc2 = nn.Linear(hidden_size, output_size)  # Linear layer for output
+
+        self.sigmoid = (
+            nn.Sigmoid()
+        )  # Sigmoid layer cz we will have binary classification
 
     def forward(self, x):
         
