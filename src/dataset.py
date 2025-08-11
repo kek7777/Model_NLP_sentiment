@@ -19,6 +19,7 @@ from collections import Counter                             # for definition of 
 df = pd.read_csv(r'C:\Users\Admin\WORK\Project_CV\Model_NLP_sentiment\data\IMDB Dataset.csv')    # insert path to your data
 df = df.sample(100)                                                                        # Choose count of review  for test model (example 100)
 df["label"] = df["sentiment"].apply(lambda x: x == "positive")
+df.loc[:,'clean'] = df.loc[:, 'review'].apply(preprocessing)
 
 
 reviews = df.clean.values                                 # get all processed reviews
