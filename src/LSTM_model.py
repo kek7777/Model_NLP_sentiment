@@ -14,36 +14,27 @@ class RNN(nn.Module):
         super(RNN, self).__init__()
 
         self.embedding = nn.Embedding(vocab_size, embed_dim)                      # embedding layer is useful to map input into vector representation
-
         
         self.lstm = nn.LSTM(embed_dim, hidden_size, n_layers, dropout=dropout, batch_first=True)    # LSTM layer preserved by PyTorch library
-
+                                                                                                    # batch_first=True - input data format (batch, sequence, features)
         
         # self.dropout = nn.Dropout(0.3)                                              # dropout layer     
 
-        self.fc1 = nn.Linear(hidden_size, output_size)
+        self.fc1 = nn.Linear(hidden_size, hidden_size)
         self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_size, output_size)             # Linear layer for output
+        self.sigmoid = nn.Sigmoid()                                # Sigmoid layer cz we will have binary classification
 
-        self.fc2 = nn.Linear(hidden_size, output_size)  # Linear layer for output
-
-        self.sigmoid = (
-            nn.Sigmoid()
-        )  # Sigmoid layer cz we will have binary classification
 
     def forward(self, x):
-        
-        # convert feature to long
-        # x = x.long()
+        x = x.long()                        # changes to type (int64) for embedding
+        out = self.embedding(x)             # (batch, seq_len) -> (batch, seq_len, embed_dim)
+        out, _ =  self.lstm(out)             # # (batch, seq_len, embed_dim) -> (batch, seq_len, hidden_size)
 
-        out = self.embedding(x)             # map input to vector
-
-        out, _ =  self.lstm(out)             # pass forward to lstm
-
-        out = out[:, -1, :]                 # get last sequence output
-
+        out = out[:, -1, :]                 # берет только последний выход последовательности
+                                            # Использует только последний выход LSTM - подходит для задач, где важен общий контекст
         out = self.fc1(out)
         out = self.relu(out)
-
         # apply dropout and fully connected layer
         # out = self.dropout(o)
         out = self.fc2(out)
