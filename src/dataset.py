@@ -16,10 +16,18 @@ from collections import Counter                             # for definition of 
 
 
 
-df = pd.read_csv(r'C:\Users\Admin\WORK\Project_CV\Model_NLP_sentiment\data\IMDB Dataset.csv')    # insert path to your data
-df = df.sample(100)                                                                        # Choose count of review  for test model (example 100)
-df["label"] = df["sentiment"].apply(lambda x: x == "positive")
-df.loc[:,'clean'] = df.loc[:, 'review'].apply(preprocessing)
+df = pd.read_csv(r"C:\Users\Admin\WORK\Project_CV\Model_NLP_sentiment\data\clean_IMDB_Dataset.csv")    # insert path to your data
+df = df.sample(1600)                                                                        # Choose count of review  for test model (example 100)
+
+# def transform_label(label):
+#     return 1 if label == 'positive' else 0
+
+# df['label'] = df['sentiment'].progress_apply(transform_label)
+
+
+
+# # df["label"] = df["sentiment"].apply(lambda x: x == "positive")
+# df.loc[:,'clean'] = df.loc[:, 'review'].apply(preprocessing)
 
 
 reviews = df.clean.values                                 # get all processed reviews
@@ -45,7 +53,7 @@ def pad_features(reviews, pad_id, seq_length=128):
         features[i, :len(row)] = np.array(row)[:seq_length]               # if seq_length < len(row) then review will be trimmed
     return features
 
-seq_length = 256
+seq_length = 200
 features = pad_features(reviews_enc, pad_id=word2int['<PAD>'], seq_length=seq_length)       # creating array len 256 filled zero up and then it records real values
                                                                                             # if len < 256 there will be zero 
 assert len(features) == len(reviews_enc)                                                    # check count of reviews (true or false)

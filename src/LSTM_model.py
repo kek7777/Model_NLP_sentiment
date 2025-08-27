@@ -1,11 +1,5 @@
 # Import packages
-import torch
-import os
 from torch import nn 
-from torch import optim 
-from torch.utils.data import DataLoader
-
-
 
 # model architecture LSTM
 

@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/Admin/WORK/Project_CV/Model_NLP_sentiment/mlruns/0/0336f6586d2c431bb1c389f9f9a1dd47/artifacts
+end_time: 1755783887616
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0336f6586d2c431bb1c389f9f9a1dd47
+run_name: Exp_1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1755783886448
+status: 4
+tags: []
+user_id: Admin
